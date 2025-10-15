@@ -2,10 +2,9 @@ pipeline {
     agent any
 
     tools {
-    jdk 'JDK21'      // match the actual name shown in Jenkins > Global Tool Configuration
-    maven 'Maven'
-}
-
+        jdk 'JDK21'      // Use the actual names configured in Jenkins
+        maven 'Maven'
+    }
 
     stages {
         stage('Checkout') {
@@ -18,14 +17,14 @@ pipeline {
         stage('Build') {
             steps {
                 echo '🔹 Building Java application...'
-                sh 'mvn clean compile'
+                bat 'mvn clean compile'
             }
         }
 
         stage('Run') {
             steps {
                 echo '🔹 Running Java application...'
-                sh 'mvn exec:java -Dexec.mainClass="com.example.HelloWorld"'
+                bat 'mvn exec:java -Dexec.mainClass="com.example.HelloWorld"'
             }
         }
     }
